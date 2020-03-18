@@ -6,6 +6,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 COPY ./requirements.txt /usr/src/app/requirements.txt
+COPY ./alembic.ini /usr/src/app/alembic.ini
 
 RUN set -eux \
     && apk add --no-cache --virtual .build-deps build-base \
