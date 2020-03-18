@@ -5,12 +5,12 @@ from sqlalchemy import (Column, DateTime, Integer, MetaData, String, Table,
                         create_engine)
 from sqlalchemy.sql import func
 
+
 DATABASE_URL = os.getenv("DATABASE_URL")
-
 engine = create_engine(DATABASE_URL)
 
-engine = create_engine(DATABASE_URL)
 metadata = MetaData()
+# more on metadata: https://stackoverflow.com/questions/44098854/understanding-metadata-from-sqlalchemy-in-python
 
 notes = Table(
     "notes",

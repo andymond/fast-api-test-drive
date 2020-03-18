@@ -6,13 +6,17 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 COPY ./requirements.txt /usr/src/app/requirements.txt
+COPY ./alembic.ini /usr/src/app/alembic.ini
 
 RUN set -eux \
     && apk add --no-cache --virtual .build-deps build-base \
         libressl-dev libffi-dev gcc musl-dev python3-dev \
-        postgresql-dev \
+        postgresql-dev bind-tools netcat-openbsd\
     && pip install --upgrade pip setuptools wheel \
     && pip install -r /usr/src/app/requirements.txt \
     && rm -rf /root/.cache/pip
 
 COPY . /usr/src/app/
+
+COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
+RUN chmod +x /usr/src/app/entrypoint.sh
